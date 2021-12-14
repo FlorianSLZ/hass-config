@@ -1,8 +1,8 @@
+My Blog: [scloud | All about Microsoft 365 & Enterprise Mobility + Security](https://scloud.work/)
 # Home Assistant Configuration
-My Blog: [scloud | All about Microsoft 365 & Enterprise Mobility + Security](https://scloud.work/) (Mainfocus )
 
 [Hass.io](https://home-assistant.io/) installed on a Intel NUC, Acces via Amazon Fire HD 5, Lenovo M10 (with Dock), Mobile App (iOS) and Tesla. 
-
+![dashboard.png](https://github.com/FlorianSLZ/hass-config/blob/main/dashboard.png?raw=true)
 [Short Demo](https://www.reddit.com/r/homeassistant/comments/rg65o2/latest_take_on_my_ha_dashboard_for_tablets_in_the/)
 
 ## Hardware
@@ -42,6 +42,10 @@ My Blog: [scloud | All about Microsoft 365 & Enterprise Mobility + Security](htt
 ## Lovelace
 |Name|Description|Source|
 |---|---|---|
-|Blink|Cameras|default|
-||||
+|bar-card||https://github.com/custom-cards/bar-card|
+|Sidebar|Sidebar in my dashbiard, config in ui-ovelace.yaml|https://github.com/DBuit/sidebar-card|
+|Button-card|better buttons with templates|https://github.com/custom-cards/button-card|
+|card-mod|css for any card|https://github.com/thomasloven/lovelace-card-mod|
+|mini-graph-card|lovely graph ui|https://github.com/kalkih/mini-graph-card|
+|layout-card|control over the placement of lovelace cards|https://github.com/thomasloven/lovelace-layout-card|
 
