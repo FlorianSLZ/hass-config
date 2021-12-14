@@ -1,0 +1,36 @@
+# CAMERAS --------------------------------------------------------------------------------------------
+title: 'CAMERAS'
+path: cams
+icon: 'mdi:camera-iris'
+cards:
+################################################################################################
+  - type: vertical-stack
+    cards: 
+    - type: picture-glance
+      title: Strasse
+      camera_image: camera.blink_strasse
+      entities:
+        - entity: camera.blink_strasse
+          tap_action:
+            action: call-service
+            service: automation.trigger
+            service_data:
+              entity_id: automation.blink_snap_strasse
+    - type: picture-glance
+      title: Terrasse
+      camera_image: camera.blink_terrasse
+      entities:
+        - entity: camera.blink_terrasse
+          tap_action:
+            action: call-service
+            service: automation.trigger
+            service_data:
+              entity_id: automation.blink_snap_terrasse
+
+  - type: vertical-stack
+    cards: 
+    - type: weather-forecast
+      entity: weather.dark_sky
+    - type: iframe
+      url: https://wilerturm.roundshot.com
+      aspect_ratio: 100%

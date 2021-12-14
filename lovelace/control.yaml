@@ -1,0 +1,231 @@
+# CONTROL --------------------------------------------------------------------------------------------
+title: 'CONTROL'
+path: control
+icon: mdi:view-dashboard-variant
+cards:
+################################################################################################
+
+
+
+# Staubsauger
+- type: grid
+  title: 'Julio'
+  columns: 1
+  cards:
+    - type: vertical-stack
+      cards:
+      - type: picture-elements
+        image: /local/img/vacuum-robot-bg.png
+        elements:
+          - entity: sensor.vacuum_status
+            style:
+              color: 'rgba(10, 132, 255,1)'
+              font-weight: 300
+              left: 50%
+              text-align: center
+              top: 50%
+              font-size: 16px
+            type: state-label
+
+      - type: horizontal-stack
+        cards: 
+        - type: "custom:button-card"
+          entity: input_boolean.vacuum_auto
+          icon: 'mdi:robot-vacuum'
+          show_name: false
+        - type: "custom:button-card"
+          icon: mdi:bell-ring
+          tap_action:
+            action: call-service
+            service: vacuum.locate
+            service_data:
+              entity_id: vacuum.julio
+        - type: "custom:button-card"
+          icon: mdi:home
+          tap_action:
+            action: call-service
+            service: vacuum.return_to_base
+            service_data:
+              entity_id: vacuum.julio
+        - type: "custom:button-card"
+          icon: mdi:play
+          tap_action:
+            action: call-service
+            service: script.turn_on
+            service_data:
+              entity_id: script.vacuum_clean_wohnung
+        - type: "custom:button-card"
+          icon: mdi:stop
+          tap_action:
+            action: call-service
+            service: vacuum.stop
+            service_data:
+              entity_id: vacuum.julio
+
+      - type: grid
+        title: 'Sektoren'
+        columns: 4
+        cards:
+
+          - type: custom:button-card
+            icon: mdi:broom
+            entity: script.vacuum_clean_fs
+            tap_action: 
+              action: call-service
+              service: script.vacuum_clean_fs
+            name: FS
+
+          - type: custom:button-card
+            icon: mdi:broom
+            entity: script.vacuum_clean_la
+            tap_action: 
+              action: call-service
+              service: script.vacuum_clean_la
+            name: LA
+
+          - type: custom:button-card
+            icon: mdi:broom
+            entity: script.vacuum_clean_wz
+            tap_action: 
+              action: call-service
+              service: script.vacuum_clean_wz
+            name: Stubä
+
+          - type: custom:button-card
+            icon: mdi:broom
+            entity: script.vacuum_clean_kuche
+            tap_action: 
+              action: call-service
+              service: script.vacuum_clean_kuche
+            name: Küche
+
+          - type: custom:button-card
+            icon: mdi:broom
+            entity: script.vacuum_clean_bad
+            tap_action: 
+              action: call-service
+              service: script.vacuum_clean_bad
+            name: Bad
+
+          - type: custom:button-card
+            icon: mdi:broom
+            entity: script.vacuum_clean_wc
+            tap_action: 
+              action: call-service
+              service: script.vacuum_clean_wc
+            name: WC
+
+          - type: custom:button-card
+            icon: mdi:broom
+            entity: script.vacuum_clean_gang
+            tap_action: 
+              action: call-service
+              service: script.vacuum_clean_gang
+            name: Gang
+
+
+      - type: entities
+        entities:
+          - sensor.vacuum_start_time_weekdays
+          - input_number.vacuum_start_hour_weekdays
+          - input_number.vacuum_start_minutes_weekdays
+
+      - type: grid
+        columns: 1
+        title: Media
+        cards:  
+          - type: media-control
+            entity: media_player.spotify_sa
+
+
+- type: vertical-stack
+  cards:
+  - type: grid
+    title: Wohnung
+    columns: 3
+    cards:
+
+      - type: custom:button-card
+        entity: light.wohnzimmer 
+        name: Wohnzimmer
+        template:
+          - light
+          - icon_hue
+
+      - type: custom:button-card
+        entity: light.esszimmer
+        name: Esszimmer
+        template:
+          - light
+          - icon_shade
+
+      - type: custom:button-card
+        entity: light.kuche
+        name: Küche
+        template:
+          - light
+          - icon_shade
+
+      - type: custom:button-card
+        entity: switch.terrasse
+        name: Terrasse
+        template:
+          - light
+          - icon_shade
+
+      - type: custom:button-card
+        entity: light.shelly_shsw_1_770e1f
+        name: Bad
+        template:
+          - light
+          - icon_hue
+
+      - type: custom:button-card
+        entity: light.shelly_shsw_1_76ac11
+        name: WC
+        template:
+          - light
+          - icon_shade
+
+      - type: custom:button-card
+        entity: light.gang
+        name: Gang
+        template:
+          - light
+          - icon_shade
+
+
+  - type: grid
+    title: 'Büro'
+    columns: 3
+    cards:
+      - type: custom:button-card
+        entity: light.buro
+        name: Büro
+        template:
+          - light
+          - icon_shade
+
+
+
+  - type: grid
+    title: 'Server'
+    columns: 3
+    cards:
+      - type: gauge
+        name: Memmory
+        entity: sensor.memory_use_percent
+      - type: gauge
+        name: Processor
+        entity: sensor.processor_use_percent
+      - type: gauge
+        name: Disk
+        entity: sensor.disk_use_percent
+
+
+
+
+
+
+
+

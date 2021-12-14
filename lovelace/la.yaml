@@ -1,0 +1,156 @@
+# LA --------------------------------------------------------------------------------------------
+title: 'LA'
+path: LA
+icon: 'mdi:alpha-l-circle'
+#background: center / cover no-repeat url("/local/img/background.png") fixed
+cards:
+################################################################################################
+
+# Floorplan LA
+  - type: vertical-stack
+    cards:
+    - type: picture-elements
+      style: |
+        ha-card {
+          --ha-card-background: rgba(0, 0, 0, 0.0);
+          box-shadow: 0px 0px;
+          max-width: 500px;
+        }
+        ha-card:not(.type-markdown):not(.type-custom-button-card):not(.type-entities):not(.type-custom-mod-card):not(.type-custom-bar-card):not(.type-history-graph):not(.type-iframe):not(.type-glance){
+          margin: 0px 10%
+        }
+      image: /local/floorplan/la/la-room.png
+      elements:
+# Sensoren
+        # LA Fenster
+        - type: image
+          entity: binary_sensor.door_window_sensor_158d00044463aa
+          image: /local/floorplan/open.png
+          state_filter:
+            "on": opacity(100%)
+            "off": opacity(0%)
+          style:
+            top: 90%
+            left: 90%
+            width: 20%
+# Lampen
+        - type: image
+          entity: light.shelly_shsw_1_76f514
+          tap_action:
+            action: toggle
+          image: /local/floorplan/light-decke.png
+          state_filter:
+            "on": opacity(100%)
+            "off": opacity(0%)
+          style:
+            top: 36%
+            left: 54%
+            width: 80%
+        - type: image
+          entity: light.la_nachttisch
+          tap_action:
+            action: toggle
+          image: /local/floorplan/light-nachttisch.png
+          state_filter:
+            "on": opacity(100%)
+            "off": opacity(0%)
+          style:
+            top: 63%
+            left: 15%
+            width: 21%
+        - type: image
+          entity: light.la_pult
+          tap_action:
+            action: toggle
+          image: /local/floorplan/light-nachttisch.png
+          state_filter:
+            "on": opacity(100%)
+            "off": opacity(0%)
+          style:
+            top: 61%
+            left: 82.2%
+            width: 21%
+
+
+# BUTTONS -------------------------------------------------------------------
+
+  - type: grid
+    title: LA
+    columns: 3
+    cards:
+
+      - type: custom:button-card
+        icon: mdi:lightbulb-group-outline
+        entity: light.la
+        template:
+          - light
+          - icon_hue
+            
+      - type: custom:button-card
+        icon: mdi:ceiling-light
+        entity: light.shelly_shsw_1_76f514
+        template:
+          - light
+          - icon_hue
+          
+      - type: custom:button-card
+        icon: mdi:desk-lamp
+        entity: light.la_pult
+        template:
+          - light
+          - icon_hue
+
+      - type: custom:button-card
+        icon: mdi:lava-lamp
+        entity: light.la_nachttisch
+        template:
+          - light
+          - icon_hue
+          
+      - type: custom:button-card
+        icon: mdi:weather-sunset
+        entity: light.la_lightstrip
+        template:
+          - light
+          - icon_hue
+          
+   
+
+  - type: horizontal-stack
+    cards: 
+    - type: custom:mini-graph-card
+      name: Temperatur
+      entities:
+        - entity: sensor.temperatur_la
+      font_size: 75
+      points_per_hour: 2
+      color_thresholds:
+        - value: 0
+          color: "#0066ff"
+        - value: 19
+          color: "#33cc33"
+        - value: 21.5
+          color: "#ffcc00"
+        - value: 22.5
+          color: "#cc6600"
+        - value: 24
+          color: "#cc3300"
+    - type: custom:mini-graph-card
+      name: Luftfeuchtigkeit
+      entities:
+        - entity: sensor.luftfeuchtigkeit_la
+      font_size: 75
+      points_per_hour: 2
+      color_thresholds:
+        - value: 1
+          color: "#cc0000"
+        - value: 35
+          color: "#fff000"
+        - value: 40
+          color: "#33cc33"
+        - value: 60
+          color: "#fff000"
+        - value: 65
+          color: "#0066ff"
+
+

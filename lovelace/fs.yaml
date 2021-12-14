@@ -1,0 +1,166 @@
+# FS --------------------------------------------------------------------------------------------
+title: 'FS'
+path: FS
+icon: 'mdi:alpha-f-circle'
+cards:
+################################################################################################
+
+# Floorplan FS ----------------------------------------------------------------------------------
+  - type: vertical-stack
+    cards:
+    - type: picture-elements
+      style: |
+        ha-card {
+          --ha-card-background: rgba(0, 0, 0, 0.0);
+          box-shadow: 0px 0px;
+          max-width: 500px;
+        }
+        ha-card:not(.type-markdown):not(.type-custom-button-card):not(.type-entities):not(.type-custom-mod-card):not(.type-custom-bar-card):not(.type-history-graph):not(.type-iframe):not(.type-glance){
+          margin: 0px 10%
+        }
+      image: /local/floorplan/fs/fs-room.png
+      elements:
+# Sensoren
+        # FS Fenster
+        - type: image
+          entity: binary_sensor.door_window_sensor_158d000446c1eb
+          image: /local/floorplan/open.png
+          state_filter:
+            "on": opacity(100%)
+            "off": opacity(0%)
+          style:
+            top: 94%
+            left: 90%
+            width: 18%
+# Lampen
+        - type: image
+          entity: light.shelly_shsw_1_59e5e9
+          tap_action:
+            action: toggle
+          image: /local/floorplan/light-decke.png
+          state_filter:
+            "on": opacity(100%)
+            "off": opacity(0%)
+          style:
+            top: 33%
+            left: 50%
+            width: 80%
+        - type: image
+          entity: light.fs_nachttisch
+          tap_action:
+            action: toggle
+          image: /local/floorplan/light-nachttisch.png
+          state_filter:
+            "on": opacity(100%)
+            "off": opacity(0%)
+          style:
+            top: 65%
+            left: 13.1%
+            width: 25%
+        - type: image
+          entity: light.fs_lightstrip
+          tap_action:
+            action: toggle
+          image: /local/floorplan/fs/FS-lightstrip.png
+          state_filter:
+            "on": opacity(100%)
+            "off": opacity(0%)
+          style:
+            top: 67%
+            left: 78%
+            width: 18%
+
+# Floorplan FS END ----------------------------------------------------------------------------------
+
+
+  - type: grid
+    title: FS
+    columns: 3
+    cards:
+
+      - type: custom:button-card
+        icon: mdi:lightbulb-group-outline
+        entity: light.fs
+        template:
+          - light
+          - icon_hue
+            
+      - type: custom:button-card
+        icon: mdi:ceiling-light
+        entity: light.shelly_shsw_1_59e5e9
+        template:
+          - light
+          - icon_hue
+          
+      - type: custom:button-card
+        icon: mdi:lava-lamp
+        entity: light.fs_nachttisch
+        template:
+          - light
+          - icon_hue
+          
+      - type: custom:button-card
+        icon: mdi:weather-sunset
+        entity: light.fs_lightstrip
+        template:
+          - light
+          - icon_hue
+                
+          
+
+  - type: horizontal-stack
+    cards: 
+    - type: custom:mini-graph-card
+      name: Temperatur
+      entities:
+        - entity: sensor.temperatur_fs
+      font_size: 75
+      points_per_hour: 2
+      color_thresholds:
+        - value: 0
+          color: "#0066ff"
+        - value: 19
+          color: "#33cc33"
+        - value: 21.5
+          color: "#ffcc00"
+        - value: 22.5
+          color: "#cc6600"
+        - value: 24
+          color: "#cc3300"
+    - type: custom:mini-graph-card
+      name: Luftfeuchtigkeit
+      entities:
+        - entity: sensor.luftfeuchtigkeit_fs
+      font_size: 75
+      points_per_hour: 2
+      color_thresholds:
+        - value: 1
+          color: "#cc0000"
+        - value: 35
+          color: "#fff000"
+        - value: 40
+          color: "#33cc33"
+        - value: 60
+          color: "#fff000"
+        - value: 65
+          color: "#0066ff"
+
+# Tesla
+  - type: grid
+    title: Tesla
+    columns: 3
+    cards:
+
+      - type: custom:button-card
+        icon: mdi:battery-charging-90
+        entity: automation.tesla_am_charger_heizen
+        name: Charge & Heat
+            
+      - type: custom:button-card
+        entity: input_boolean.tesla_heizen_morgen
+        name: Warm morning
+
+         
+              
+
+
