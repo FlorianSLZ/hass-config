@@ -1,0 +1,175 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: HQ
+  # Location required to calculate the time the sun rises and sets
+  latitude: 47.492287
+  longitude: 9.250111
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 504
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Zurich
+  # Customization file
+  customize: !include customize.yaml
+
+# Includes
+automation: !include_dir_merge_list automations/
+script: !include_dir_merge_named scripts/
+#scene: !include scenes.yaml
+sensor: !include_dir_merge_list sensors/
+yeelight: !include lights/xiaomi-yeelights.yaml
+light: !include lights/lights.yaml
+group: !include groups.yaml
+input_boolean: !include misc/input_boolean.yaml
+input_number: !include misc/input_number.yaml
+input_datetime: !include misc/input_datetime.yaml
+
+# Enables the frontend
+frontend:
+  themes: !include_dir_merge_named themes/
+      
+# Enables configuration UI
+config:
+
+# System Überwachung
+system_health:
+
+# lovelace in YAML
+lovelace:
+  mode: yaml
+  resources:
+    - url: /hacsfiles/button-card/button-card.js
+      type: module
+    - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+      type: module
+    - url: /hacsfiles/weather-card/weather-card.js
+      type: module
+    - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+      type: module
+    - url: /hacsfiles/lovelace-card-mod/card-mod.js
+      type: module
+    - url: /hacsfiles/lovelace-layout-card/layout-card.js
+      type: module
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+      type: module
+    - url: /hacsfiles/lovelace-card-tools/card-tools.js
+      type: module
+    - url: /hacsfiles/lovelace-hass-aarlo/hass-aarlo.js
+      type: module
+    - url: /hacsfiles/bar-card/bar-card.js
+      type: module
+
+  
+# Z-Wave
+#zwave:
+#  usb_path: /dev/ttyACM0
+
+# Shelly Komponente 
+shelly: !include shelly.yaml
+
+# Browser mode
+browser_mod:
+
+
+
+# Sun tracking
+sun:
+
+# Recoreder (History)
+recorder:
+  purge_keep_days: 365
+  exclude:
+    domains:
+      - media_player
+      - automation
+      - weblink
+      - updater
+      - group
+      - script
+      - sun
+      - zone
+    entities:
+      - sensor.date
+      - sensor.date_time
+      - sensor.time
+      - sensor.time_date
+      - sensor.time_to_alarm
+      - sensor.time_to_alarm_min
+      - sensor.time_utc
+  
+# Enables support for tracking state changes over time
+history:
+
+# HA Cloud
+cloud:
+  alexa:
+    filter:
+      include_domains:
+        - sensor
+        - switch
+        - light
+        - script
+        - input_boolean
+
+# Web Konfiguration 
+http:
+#  base_url: https://ctrl.sa97.club:8123
+#  ssl_certificate: /ssl/fullchain.pem
+#  ssl_key: /ssl/privkey.pem
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+discovery:
+
+
+# Xiaomi Gateway
+#xiaomi_aqara:
+#  discovery_retry: 5
+#  gateways:
+#    - key: 8BBA92E54F4648F1
+
+# Staubsauger
+#vacuum:
+#  - platform: xiaomi_miio
+#    host: 10.1.97.53
+#    token: 323177734a347a426254674a63714872
+#    name: Julio
+
+# App Functions
+mobile_app:
+
+# Wetter
+weather:
+  - platform: darksky
+    api_key: !secret darksky_key
+    mode: daily
+    latitude: 47.492287
+    longitude: 9.250111
+  
+#---------------------------------------------------------------------------------
+# Locations
+#---------------------------------------------------------------------------------
+zone:
+  # This will override the default home zone
+  - name: Home
+    latitude: 47.468255 
+    longitude: 9.053567
+    radius: 100
+    icon: mdi:home-circle
+  - name: Charger-Spital
+    latitude: 47.465524
+    longitude: 9.056913
+    radius: 100
+    icon: mdi:ev-station
+
+#---------------------------------------------------------------------------------
+# Alarm
+#---------------------------------------------------------------------------------
+alarm_control_panel:
+  platform: manual
+  name: "Alarm"
+  #code: !secret alarm_code
+  disarm_after_trigger: false

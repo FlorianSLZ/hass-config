@@ -1,0 +1,64 @@
+devices:
+  10.1.97.80:
+    name: 'Büro Tisch'
+    transition: 1000
+  10.1.97.81:
+    name: 'Couch Back right'
+    transition: 1000
+  10.1.97.82:
+    name: 'Couch Front'
+    transition: 1000
+  10.1.97.83:
+    name: 'LA Nachttisch'
+  10.1.97.84:
+    name: 'FS Nachttisch'
+  10.1.97.85:
+    name: 'LA Pult'
+  10.1.97.86:
+    name: 'Couch Back left'
+    transition: 1000
+  10.1.97.87:
+    name: 'FS Lightstrip'
+    transition: 3000
+  10.1.97.88:
+    name: 'LA Lightstrip'
+    transition: 3000
+  10.1.97.89:
+    name: 'Bürowand oben'
+    transition: 1000
+custom_effects:
+  - name: 'Candle'
+    flow_params:
+      count: 0
+      transitions:
+        - TemperatureTransition: [1900, 1000, 80]
+        - TemperatureTransition: [1700, 3000, 60]
+        - SleepTransition:       [100]
+        - TemperatureTransition: [1900, 1000, 80]
+        - TemperatureTransition: [1800, 800, 50]
+  - name: 'Movie Time'
+    flow_params:
+      count: 1
+      action: stay
+      transitions:
+        - RGBTransition: [0, 255, 0, 1000, 100]
+        - TemperatureTransition: [3000, 2000, 100]
+  - name: 'Sunrise 3min'
+    flow_params:
+      count: 1
+      action: stay
+      transitions:
+        - RGBTransition: [255, 80, 0, 50, 1]
+        - RGBTransition: [255, 80, 0, 60000, 50]
+        - RGBTransition: [255, 100, 0, 60000, 120]
+        - RGBTransition: [255, 150, 0, 60000, 250]
+
+  - name: 'Sunrise 1min'
+    flow_params:
+      count: 1
+      action: stay
+      transitions:
+        - RGBTransition: [255, 80, 0, 50, 1]
+        - RGBTransition: [255, 80, 0, 20000, 50]
+        - RGBTransition: [255, 100, 0, 20000, 120]
+        - RGBTransition: [255, 150, 0, 20000, 250]

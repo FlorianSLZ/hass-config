@@ -1,0 +1,5 @@
+office_morning:
+  alias: 'Office morning'
+  icon: "mdi:sunrise"
+  entities:
+      light.fs: "off"

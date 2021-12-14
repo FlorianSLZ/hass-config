@@ -1,0 +1,11 @@
+watchtv:
+  alias: 'Movie Modus'
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.couch_front
+    - service: light.turn_on
+      entity_id: light.couch_back
+      data:
+        effect: "Movie Time"
+

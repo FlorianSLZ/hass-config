@@ -1,0 +1,22 @@
+# Staubsauger
+vacuum_start_minutes_weekdays:
+  name: Weekdays (min)
+  min: 0
+  max: 59
+  step: 1
+  mode: slider
+vacuum_start_hour_weekdays:
+  name: Weekdays (h)
+  min: 0
+  max: 23
+  step: 1
+  mode: slider
+
+
+# Office NFC Florian
+office_nfc_fs:
+  name: Office NFC Florian
+  initial: 0
+  min: 0
+  max: 100
+  mode: box

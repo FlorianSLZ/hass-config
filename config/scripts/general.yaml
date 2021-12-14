@@ -1,0 +1,31 @@
+athome:
+  alias: 'Zuhause'
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.ambientelicht
+        brightness: '250'
+        effect: Slow Temp
+    - service: light.turn_on
+      data:
+        entity_id: light.deckenlicht
+        brightness: '250'
+    - service: media_player.select_source
+      entity_id: media_player.spotify
+      data:
+        source: "Wohnzimmer"
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.spotify
+        volume_level: 0.3
+    - service: media_player.media_play
+      data:
+        entity_id: media_player.spotify
+
+goaway:
+  alias: 'Ciao'
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: 
+          - light.alle_lichter

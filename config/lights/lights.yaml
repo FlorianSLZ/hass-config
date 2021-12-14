@@ -1,0 +1,66 @@
+- platform: switch
+  name: Flughafen
+  entity_id: switch.flughafen
+
+- platform: switch
+  name: Küche
+  entity_id: switch.kuche
+
+- platform: switch
+  name: Esszimmer
+  entity_id: switch.esszimmer
+    
+- platform: switch
+  name: Terrasse
+  entity_id: switch.terrase
+
+- platform: group
+  name: Alle Lichter
+  entities:
+    - light.fs
+    - light.la
+    - light.Wohnzimmer
+    - light.Esszimmer
+    - light.shelly_shsw_1_76ac11 # WC
+    - light.shelly_shsw_1_770e1f # Bad
+    - light.terrasse
+    - light.kuche
+    - light.gang
+
+- platform: group
+  name: Wohnzimmer
+  entities:
+    - light.couch_front
+    - light.couch_back
+
+- platform: group
+  name: Couch Back
+  entities:
+    - light.couch_back_left
+    - light.couch_back_right
+    
+- platform: group
+  name: FS
+  entities:
+    - light.shelly_shsw_1_59e5e9
+    - light.fs_lightstrip
+    - light.fs_nachttisch
+
+- platform: group
+  name: LA
+  entities:
+    - light.la_nachttisch
+    - light.shelly_shsw_1_76f514
+    - light.la_pult
+    - light.la_lightstrip
+
+- platform: group
+  name: Büro
+  entities:
+    - light.buro_tisch
+    - light.burowand_oben
+
+- platform: group
+  name: Licht
+  entities:
+    - light.wohnzimmer

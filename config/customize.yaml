@@ -1,0 +1,133 @@
+# Sensoren
+## Temperatur
+sensor.wohnzimmer_temperature:
+  friendly_name: Temperatur Davos
+sensor.wohnzimmer_humidity:
+  friendly_name: Luftfeuchtigkeit Davos
+sensor.temperature_158d000358bdfa:
+  friendly_name: Küchen Temperatur
+sensor.temperature_158d00031b417e:
+  friendly_name: LA Temperatur
+sensor.temperature_158d000410b3d3:
+  friendly_name: FS Temperatur
+sensor.temperature_158d0001dcc48e:
+  friendly_name: Bad Temperatur
+sensor.temperature_158d0001701e66:
+  friendly_name: Wohnzimmer Temperatur
+sensor.temperature_158d0002f94602:
+  friendly_name: Aussentemperatur
+sensor.temperature_158d000449f214:
+  friendly_name: Büro Temperatur
+sensor.temperature_158d0002b8d5a1:
+  friendly_name: Gang Temperatur
+sensor.temperature_158d0002b8e68f:
+  friendly_name: WC Temperatur
+
+## Luftfeuchtigkeit
+sensor.humidity_158d000358bdfa:
+  friendly_name: Küchen Luftfeuchtigkeit
+sensor.humidity_158d00031b417e:
+  friendly_name: LA Luftfeuchtigkeit
+sensor.humidity_158d000410b3d3:
+  friendly_name: FS Luftfeuchtigkeit
+sensor.humidity_158d0001dcc48e:
+  friendly_name: Bad Luftfeuchtigkeit
+sensor.humidity_158d0001701e66:
+  friendly_name: Wohnzimmer Luftfeuchtigkeit
+sensor.humidity_158d0002f94602:
+  friendly_name: Aussenbereich Luftfeuchtigkeit
+sensor.humidity_158d000449f214:
+  friendly_name: Büro Luftfeuchtigkeit
+sensor.humidity_158d0002b8d5a1:
+  friendly_name: Gang Luftfeuchtigkeit
+sensor.humidity_158d0002b8e68f:
+  friendly_name: WC Luftfeuchtigkeit
+
+## Fenster
+binary_sensor.door_window_sensor_158d0001596dd0:
+  friendly_name: Terrassentür
+binary_sensor.door_window_sensor_158d0003cc7544:
+  friendly_name: Wohnzimmer Fenster 2
+binary_sensor.door_window_sensor_158d00044463aa:
+  friendly_name: LA Fenster
+binary_sensor.door_window_sensor_158d000446c1eb:
+  friendly_name: FS Fenster
+binary_sensor.door_window_sensor_158d00034d5023:
+  friendly_name: Bad Fenster
+binary_sensor.door_window_sensor_158d00034d5155:
+  friendly_name: Küchen Fenster 1
+binary_sensor.door_window_sensor_158d00034d7201:
+  friendly_name: Küchen Fenster 2
+binary_sensor.door_window_sensor_158d00035839a9:
+  friendly_name: WC Fenster
+binary_sensor.door_window_sensor_158d00045cf9bb:
+  friendly_name: Eingangstür
+binary_sensor.door_window_sensor_158d0003cd1222:
+  friendly_name: Büro Fenster
+
+## Bewegung
+binary_sensor.motion_sensor_158d00062f8be7:
+  friendly_name: Küche Bewegung
+binary_sensor.motion_sensor_158d000659cbb3:
+  friendly_name: Büro Bewegung
+
+## Heligkeit
+sensor.illumination_34ce008acb70:
+  friendly_name: Küche Helligkeit
+sensor.illumination_158d000659cbb3:
+  friendly_name: Büro Helligkeit
+
+
+# Scripte
+script.chill:
+  icon: mdi:emoticon-cool
+script.watchtv:
+  icon: mdi:filmstrip
+script.goaway:
+  icon: mdi:human-greeting
+script.athome:
+  icon: mdi:home
+script.fs_goaway:
+  icon: mdi:human-greeting
+script.fs_athome:
+  icon: mdi:home
+script.fs_goodmorning:
+  icon: mdi:weather-sunset-up
+script.la_goaway:
+  icon: mdi:human-greeting
+script.la_athome:
+  icon: mdi:home
+script.la_goodmorning:
+  icon: mdi:weather-sunset-up
+
+# Switches
+switch.terrasse:
+  icon: mdi:outdoor-lamp
+switch.plug_158d0001f9eb98:
+  friendly_name: Flughafen Plug
+switch.plug_158d00015dc7c9:
+  friendly_name: Terrasse Plug
+switch.plug_158d0001fa0033:
+  friendly_name: Plug FS
+binary_sensor.switch_158d00018705e8:
+  friendly_name: WZ Terrasse
+binary_sensor.switch_158d000214ec90:
+  friendly_name: WZ Alarm
+binary_sensor.switch_158d00040e67a5:
+  friendly_name: Terrasse Button
+binary_sensor.switch_158d0003cff551:
+  friendly_name: LA Button
+binary_sensor.switch_158d0001f35a4e:
+  friendly_name: FS Button
+binary_sensor.switch_158d0001b86bfe:
+  friendly_name: Gang Master
+binary_sensor.wall_switch_right_158d00053f1517:
+  friendly_name: EZ Switch right
+binary_sensor.wall_switch_left_158d00053f1517:
+  friendly_name: EZ Switch left
+  
+# Lights
+light.couch_back:
+  icon: mdi:floor-lamp
+light.couch_front:
+  icon: mdi:floor-lamp

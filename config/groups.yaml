@@ -1,0 +1,10 @@
+all_windows:
+  name: Alle Fenster
+  entities:
+    - binary_sensor.door_window_sensor_158d00034d5023
+    - binary_sensor.door_window_sensor_158d00034d5155
+    - binary_sensor.door_window_sensor_158d00034d7201
+    - binary_sensor.door_window_sensor_158d00035839a9
+    - binary_sensor.door_window_sensor_158d0003cc7544
+    - binary_sensor.door_window_sensor_158d00044463aa
+    - binary_sensor.door_window_sensor_158d000446c1eb

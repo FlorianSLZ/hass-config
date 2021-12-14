@@ -1,0 +1,16 @@
+discovery: true  
+sensors: 
+  - uptime
+devices:  
+  - id: "59E5E9"
+    light_switch: true  
+    name: FS Decke
+  - id: "76F514"
+    light_switch: true  
+    name: LA Decke
+  - id: "770E1F"
+    light_switch: true  
+    name: Bad
+  - id: "76AC11"
+    light_switch: true  
+    name: WC

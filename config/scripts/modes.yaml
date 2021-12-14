@@ -1,0 +1,18 @@
+set_on_off_time:
+  sequence:
+    - service: input_datetime.set_datetime
+      data_template:
+        entity_id: input_datetime.fs_on_time
+        time: "{{ (range(20, 21)|random|int) }}:{{ (range(0, 59)|random|int) }}:00"
+    - service: input_datetime.set_datetime
+      data_template:
+        entity_id: input_datetime.fs_off_time
+        time: "{{ (range(22, 22)|random|int) }}:{{ (range(0, 59)|random|int) }}:00"
+    - service: input_datetime.set_datetime
+      data_template:
+        entity_id: input_datetime.wz_on_time
+        time: "{{ (range(18, 19)|random|int) }}:{{ (range(0, 59)|random|int) }}:00"
+    - service: input_datetime.set_datetime
+      data_template:
+        entity_id: input_datetime.wz_off_time
+        time: "{{ (range(21, 22)|random|int) }}:{{ (range(0, 59)|random|int) }}:00"

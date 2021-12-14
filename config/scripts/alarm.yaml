@@ -1,0 +1,52 @@
+refill_time:
+  alias: 'Refill Time'
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.couch_front
+        effect: WhatsApp
+    - service: light.turn_on
+      data:
+        entity_id: light.couch_back
+        effect: WhatsApp
+    - delay: 0:00:01
+    - service: light.turn_on
+      data:
+        entity_id: light.couch_front
+        effect: WhatsApp
+    - service: light.turn_on
+      data:
+        entity_id: light.couch_back
+        effect: WhatsApp
+        
+slammer_time:
+  alias: 'Slammer Time'
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.couch_front
+        effect: Twitter
+    - service: light.turn_on
+      data:
+        entity_id: light.couch_back
+        effect: WhatsApp
+    - delay: 0:00:01
+    - service: light.turn_on
+      data:
+        entity_id: light.couch_front
+        effect: Twitter
+    - service: light.turn_on
+      data:
+        entity_id: light.couch_back
+        effect: Twitter
+
+
+danger_alarm:
+  alias: 'Danger ALARM'
+  sequence:
+    - service: light.turn_on
+      entity_id: all
+    - service: light.turn_on
+      data:
+        entity_id: light.wohnzimmer
+        effect: Strobe color

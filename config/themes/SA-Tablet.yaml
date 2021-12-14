@@ -1,0 +1,182 @@
+SA Tablet:
+  # Color
+  primary-color: "#4894fe"
+  light-primary-color: var(--primary-color)
+  accent-color: "#398bff"
+  mdc-theme-secondary: var(--accent-color)
+  # More colors
+  success-color: "#77EB60"
+  info-color: var(--primary-color)
+  warning-color: "#FE9135"
+  error-color: "#F72222"
+  # Background
+  primary-background-color: "#111111"
+  secondary-background-color: "#222222"
+  # Text
+  primary-text-color: "#F7F8FA"
+  secondary-text-color: var(--primary-text-color)
+  codemirror-meta: var(--primary-text-color)
+  material-secondary-text-color: var(--secondary-text-color)
+  text-primary-color: "#FFFFFF"
+  disabled-text-color: "#616387"
+  # Fonts
+  paper-font-headline_-_font-family: Quicksand, Roboto, sans-serif
+  paper-font-headline_-_font-weight: "600"
+  paper-font-subhead_-_font-family: Quicksand, Roboto, sans-serif
+  paper-font-subhead_-_font-weight: "550"
+  paper-font-subhead_-_line-height: 2.2em
+  ha-card-header-font-family: Quicksand, Roboto, sans-serif
+  ha-card-header-font-weight: "600"
+  code-font-family: Cascadia Code PL, Cascadia Mono PL, Cascadia Code, Cascadia Mono, monospace
+  paper-font-common-code_-_font-family: var(--code-font-family)
+  # Sidebar
+  sidebar-icon-color: var(--primary-text-color)
+  sidebar-text-color: var(--primary-text-color)
+  sidebar-selected-icon-color: var(--light-primary-color)
+  sidebar-selected-text-color: var(--light-primary-color)
+  sidebar-background-color: var(--primary-background-color)
+  sidebar-selected-background-color: var(--primary-background-color)
+  divider-color: var(--primary-background-color)
+  # Header
+  app-header-background-color: var(--primary-background-color)
+  app-header-text-color: var(--primary-text-color)
+  # Icons
+  state-icon-color: var(--primary-text-color)
+  state-icon-active-color: var(--primary-color)
+  state-icon-unavailable-color: var(--disabled-text-color)
+  # Sliders
+  paper-slider-knob-color: var(--primary-color)
+  paper-slider-knob-start-color: var(--primary-color)
+  paper-slider-pin-color: var(--primary-color)
+  paper-slider-active-color: var(--primary-color)
+  paper-slider-secondary-color: var(--light-primary-color)
+  # Labels
+  label-badge-background-color: var(--primary-background-color)
+  label-badge-text-color: var(--primary-text-color)
+  label-badge-red: "#EB6065"
+  label-badge-green: "#60EB67"
+  label-badge-blue: "#60B1EB"
+  label-badge-yellow: "#EBC860"
+  label-badge-gray: "#666F80"
+  # Cards
+  ha-card-border-radius: "0"
+  ha-card-box-shadow: "inset 0px 0px 0px 1px var(--border-color)"
+  ha-card-border-color: var(--primary-color)
+  ha-card-border-width: 3px
+  card-background-color: var(--primary-background-color)
+  paper-card-background-color: var(--primary-background-color)
+  paper-listbox-background-color: var(--primary-background-color)
+  masonry-view-card-margin: 10px
+  # Switches
+  switch-checked-button-color: var(--primary-color)
+  switch-checked-track-color: var(--primary-color)
+  switch-unchecked-button-color: var(--disabled-text-color)
+  switch-unchecked-track-color: var(--disabled-text-color)
+  paper-toggle-button-checked-button-color: var(--primary-color)
+  paper-toggle-button-checked-bar-color: var(--primary-color)
+  paper-toggle-button-unchecked-button-color: var(--disabled-text-color)
+  paper-toggle-button-unchecked-bar-color: var(--disabled-text-color)
+  # Tables
+  table-row-background-color: var(--primary-background-color)
+  table-row-alternative-background-color: var(--primary-background-color)
+  data-table-background-color: var(--primary-background-color)
+  # Dropdowns
+  material-background-color: var(--primary-background-color)
+  material-secondary-background-color: rgba(255, 255, 255, 0.1)
+  mdc-theme-surface: var(--primary-background-color)
+  # Convenience
+  primary-name-text-color: grey
+  primary-state-text-color: grey
+  primary-icon-color: grey
+  primary-yellow: "#FAD46B"
+  dark-primary-yellow: "#DAB44B"
+  tertiary-background-color: "#323545"
+  ha-card-box-shadow-inset: inset -5.5px -5.5px 5.5px 0 rgba(60, 60, 60, .5), inset 5.5px 5.5px 5.5px 0 rgba(0, 0, 0, .5)
+  soft-ui-pressed: var(--ha-card-box-shadow-inset)
+  soft-ui-shadow: var(--ha-card-box-shadow)
+  red: "#eb6060"
+  red-orange: "#eb8e60"
+  orange-red: "#eb9a60"
+  orange: "#eba560"
+  orange-yellow: "#ebc860"
+  yellow-orange: "#ebd460"
+  yellow: "#ebdf60"
+  yellow-green: "#c8eb60"
+  green-yellow: "#b1eb60"
+  green: "#60eb60"
+  green-cyan: "#60eba5"
+  cyan-green: "#60ebc8"
+  cyan: "#60ebeb"
+  cyan-blue: "#60bceb"
+  blue-cyan: "#608eeb"
+  blue: "#6060eb"
+  blue-purple: "#7760eb"
+  purple-blue: "#8e60eb"
+  purple: "#a560eb"
+  purple-pink: "#bc60eb"
+  pink-purple: "#d460eb"
+  pink: "#eb60eb"
+  pink-red: "#eb60bc"
+  red-pink: "#eb608e"
+  # Card-mod
+  card-mod-theme: "Dark Soft UI"
+  theme-red: firebrick
+  theme-green: forestgreen
+  theme-blue: deepskyblue
+  ha-label-badge-title-font-size: 1em
+  # Header
+  header-height: 0px # Change this to 0px for header on the bottom. You're 1/3 there.
+  card-mod-badge-yaml: |
+    .: |
+      :host {
+        border-radius: 0px;
+        padding: 11px 8px;
+        margin: 11px 12px 24px 12px;
+        display: inline-block;
+        --label-badge-blue: {% if not states(config.entity) %} var(--theme-blue);
+          {% elif is_state(config.entity, 'on') %} var(--theme-green);
+          {% elif is_state(config.entity, 'open') %} var(--theme-green);
+          {% elif is_state(config.entity, 'unlocked') %} var(--theme-green);
+          {% elif is_state(config.entity, 'off') %} var(--theme-red);
+          {% elif is_state(config.entity, 'closed') %} var(--theme-red);
+          {% elif is_state(config.entity, 'locked') %} var(--theme-red);
+          {% else %} var(--theme-blue); {% endif %}
+        --label-badge-red: teal;
+        box-shadow: var(--ha-card-box-shadow);
+      }
+    ha-state-label-badge$ha-label-badge$: |
+      .label-badge {
+        background: none;
+      }
+      .title {
+        -webkit-line-clamp: 1;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+      }
+  # Style more info
+  card-mod-more-info-yaml: |
+    $: |
+      .mdc-dialog {
+        backdrop-filter: blur(2px);
+        background-color: #313438cc !important;
+      }
+      .mdc-dialog__scrim {
+        background-color: #313438cc !important;
+      }
+      .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+        background: var(--primary-background-color);
+        border-radius: var(--ha-card-border-radius);
+        box-shadow: var(--ha-card-box-shadow);
+        transform: scale(0.9);
+        overflow: hidden;
+      }
+      .mdc-dialog__content {
+        padding: 36px !important;
+        padding-bottom: 36px !important;
+        transform: scale(1.11);
+      }
+    ha-header-bar:
+      $: |
+        .mdc-top-app-bar {
+          background: none !important;
+        }

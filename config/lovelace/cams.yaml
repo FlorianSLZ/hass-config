@@ -2,6 +2,8 @@
 title: 'CAMERAS'
 path: cams
 icon: 'mdi:camera-iris'
+#panel: true
+#background: center / cover no-repeat url("/local/img/background.png") fixed
 cards:
 ################################################################################################
   - type: vertical-stack

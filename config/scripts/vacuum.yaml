@@ -1,0 +1,79 @@
+vacuum_clean_wohnung:
+  alias: "Clean Wohnzimmer"
+  sequence:
+    - service: vacuum.send_command
+      target:
+        entity_id: vacuum.julio
+      data:
+        command: app_segment_clean
+        params: [17,16,2,19,18,21,1]
+        
+vacuum_clean_wz:
+  alias: "Clean Wohnzimmer"
+  sequence:
+    - service: vacuum.send_command
+      target:
+        entity_id: vacuum.julio
+      data:
+        command: app_segment_clean
+        params: [1]
+        
+vacuum_clean_wc:
+  alias: "Clean WC"
+  sequence:
+    - service: vacuum.send_command
+      target:
+        entity_id: vacuum.julio
+      data:
+        command: app_segment_clean
+        params: [2]
+
+vacuum_clean_la:
+  alias: "Clean LA"
+  sequence:
+    - service: vacuum.send_command
+      target:
+        entity_id: vacuum.julio
+      data:
+        command: app_segment_clean
+        params: [16]
+
+vacuum_clean_fs:
+  alias: "Clean FS"
+  sequence:
+    - service: vacuum.send_command
+      target:
+        entity_id: vacuum.julio
+      data:
+        command: app_segment_clean
+        params: [17]
+
+vacuum_clean_gang:
+  alias: "Clean Gang"
+  sequence:
+    - service: vacuum.send_command
+      target:
+        entity_id: vacuum.julio
+      data:
+        command: app_segment_clean
+        params: [18]
+
+vacuum_clean_bad:
+  alias: "Clean Bad"
+  sequence:
+    - service: vacuum.send_command
+      target:
+        entity_id: vacuum.julio
+      data:
+        command: app_segment_clean
+        params: [19]
+
+vacuum_clean_kuche:
+  alias: "Clean Küche"
+  sequence:
+    - service: vacuum.send_command
+      target:
+        entity_id: vacuum.julio
+      data:
+        command: app_segment_clean
+        params: [21]

@@ -2,6 +2,7 @@
 title: 'FS'
 path: FS
 icon: 'mdi:alpha-f-circle'
+#background: center / cover no-repeat url("/local/img/background.png") fixed
 cards:
 ################################################################################################
 

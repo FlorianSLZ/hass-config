@@ -1,0 +1,10 @@
+- platform: template
+  sensors:
+    fs_on_time:
+      value_template: '{{ "%0.0d:%0.0d" | format(states("input_number.fs_on_h") | int, states("input_number.fs_on_min") | int) }}'
+    fs_off_time:
+      value_template: '{{ "%0.0d:%0.0d" | format(("22") | int, states("input_number.fs_off_min") | int) }}'
+    wz_on_time:
+      value_template: '{{ "%0.0d:%0.0d" | format(states("input_number.wz_on_h") | int, states("input_number.wz_on_min") | int) }}'
+    wz_off_time:
+      value_template: '{{ "%0.0d:%0.0d" | format(("22") | int, states("input_number.wz_off_min") | int) }}'

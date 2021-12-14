@@ -1,0 +1,47 @@
+fs_goodmorning:
+  alias: 'FS - Good morning!'
+  sequence:
+    - service: light.turn_on
+      entity_id: light.fs_lightstrip
+      data:
+        effect: "Sunrise 1min"
+    - delay: 00:00:30
+    - service: light.turn_on
+      entity_id: light.fs_nachttisch
+      data:
+        effect: "Sunrise 1min"
+    - delay: 00:01:00
+    - service: light.turn_off
+      entity_id: light.fs_lightstrip
+    - service: light.turn_on
+      entity_id: light.shelly_shsw_1_59e5e9
+    - service: light.turn_off
+      entity_id: light.fs_nachttisch
+    - condition: and
+      conditions:
+        - condition: numeric_state
+          entity_id: sensor.temperature_158d0002f94602 # Aussen Temperatur
+          below: 15
+        - condition: state
+          entity_id: device_tracker.teslito_location_tracker
+          state: 'home'
+        - condition: state
+          entity_id: device_tracker.slz_phone
+          state: 'home'
+        - condition: state
+          entity_id: input_boolean.tesla_heizen_morgen
+          state: 'on'
+    - delay: 00:20:00
+    - service: climate.turn_on
+      entity_id: climate.teslito_hvac_climate_system
+    - service: light.turn_on
+      entity_id: light.fs_nachttisch
+      data:
+        brightness: 250
+        rgb_color: [255,0,0]
+    - delay: 00:05:00
+    - service: climate.turn_off
+      entity_id: climate.teslito_hvac_climate_system
+    - service: light.turn_off
+      entity_id: light.fs_nachttisch
+

@@ -1,0 +1,22 @@
+# Virtual
+show_temp:
+  name: Temparatur anzeigen
+  icon: mdi:thermometer
+tesla_heizen_morgen:
+  name: Tesla am Morgen heizen
+  icon: mdi:fire
+office_nfc_fs:
+  name: Office NFC Florian
+
+# Modes
+mode_away:
+  name: Away
+  icon: mdi:airplane
+office_alone:
+  name: At the Office, alone
+  icon: mdi:account-arrow-left
+  
+# Vacuum
+vacuum_auto:
+  name: Automatisch staubsaugen
+  icon: mdi:timer

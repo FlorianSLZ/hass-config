@@ -1,0 +1,925 @@
+- id: Bad_Motion_Light
+  alias: Bad_Motion_Light
+  trigger:
+  - platform: state
+    from: 'off'
+    to: 'on'
+    entity_id: binary_sensor.bewegung_bad_back
+  - type: motion
+    platform: device
+    device_id: 9c893a52829d37d16c7ec5930bcd3c39
+    entity_id: binary_sensor.bewegung_bad_front
+    domain: binary_sensor
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: light.shelly_shsw_1_770e1f
+      state: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 3
+        milliseconds: 0
+    - condition: time
+      after: 05:00:00
+      before: '23:00:00'
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.shelly_shsw_1_770e1f
+- id: Buro_Motion_Light
+  alias: Buro_Motion_Light
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bewegung_buro
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.helligkeit_buro
+    below: 500
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: light.buro
+    data:
+      color_temp: 222
+      brightness: 255
+- id: Buro_NOMotion_4minOFFLight
+  alias: Büro-noMotion für 4min > Licht aus
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bewegung_buro
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 4
+  action:
+  - service: light.turn_off
+    entity_id: light.buro
+- id: Buro_alone_Turklingel
+  alias: Buro_Turklingel
+  trigger:
+  - platform: state
+    from: 'off'
+    to: 'on'
+    entity_id: binary_sensor.lumi_lumi_vibration_aq1_ias_zone
+  condition:
+  - condition: state
+    entity_id: light.buro
+    state: 'on'
+  action:
+  - service: light.turn_on
+    entity_id: light.buro_tisch
+    data:
+      effect: Police
+  - delay: 00:00:03
+  - service: light.turn_on
+    entity_id: light.buro_tisch
+    data:
+      effect: Stop
+  mode: single
+- id: Buro_NOMotion_AloneModeOFF
+  alias: Buro_NOMotion_AloneModeOFF
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bewegung_buro
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 90
+  action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.office_alone
+- id: EZ_ButtonBoth_WZ
+  alias: EZ_ButtonBoth_WZ
+  trigger:
+    platform: event
+    event_type: zha_event
+    event_data:
+      unique_id: 00:15:8d:00:05:3f:15:17:3:0x0012
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.wohnzimmer
+- id: EZ_ButtonLeft_CouchFront
+  alias: EZ_ButtonLeft_CouchFront
+  trigger:
+    platform: event
+    event_type: zha_event
+    event_data:
+      unique_id: 00:15:8d:00:05:3f:15:17:1:0x0012
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.couch_front
+- id: EZ_ButtonRight_CouchBack
+  alias: EZ_ButtonRight_CouchBack
+  trigger:
+    platform: event
+    event_type: zha_event
+    event_data:
+      unique_id: 00:15:8d:00:05:3f:15:17:2:0x0012
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.couch_back
+- id: FS_Button_Decke
+  alias: FS_Button_Decke
+  trigger:
+  - device_id: bedee6f65c6cb65d28395f2376943537
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: remote_button_short_press
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.shelly_shsw_1_59e5e9
+  mode: single
+- id: FS_ButtoLong_FS
+  alias: FS_ButtoLong_FS
+  trigger:
+  - device_id: bedee6f65c6cb65d28395f2376943537
+    domain: zha
+    platform: device
+    type: remote_button_long_press
+    subtype: button
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.fs
+  mode: single
+- id: FS_Button2x_FSNachttisch
+  alias: FS_Button2x_FSNachttisch
+  trigger:
+  - device_id: bedee6f65c6cb65d28395f2376943537
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: remote_button_double_press
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.fs_nachttisch
+      effect: Candle
+      brightness: 150
+  mode: single
+- id: Tesla_ChargerHeizen
+  alias: Tesla_ChargerHeizen
+  trigger:
+    platform: state
+    entity_id: device_tracker.slz_phone_3
+    from: home
+    to: not_home
+    for: 00:01:00
+  condition:
+    condition: state
+    entity_id: device_tracker.teslito_location_tracker
+    state: Charger-Spital
+  action:
+  - service: climate.turn_on
+    entity_id: climate.teslito_hvac_climate_system
+  - delay: 00:05:00
+  - service: climate.turn_off
+    entity_id: climate.teslito_hvac_climate_system
+- id: Gang_Button_AwayModeON
+  alias: Gang_Button_GOAway
+  trigger:
+  - device_id: b28153c136812b13eb3ec9d2f0a897a8
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: remote_button_short_press
+  action:
+  - service: script.goaway
+  mode: single
+- id: Gang_Button2x_Julio
+  alias: Gang_Button2x_Julio
+  trigger:
+  - device_id: b28153c136812b13eb3ec9d2f0a897a8
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: remote_button_double_press
+  action:
+  - service: script.turn_on
+    entity_id: script.vacuum_clean_wohnung
+  mode: single
+- id: Restart_HA_1.55
+  alias: Restart_HA_1.55
+  trigger:
+    platform: time
+    at: 01:55:00
+  action:
+  - service: homeassistant.restart
+- id: Turklingel_vibration
+  alias: Turklingel_vibration
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.movement
+    event_data:
+      entity_id: binary_sensor.vibration_158d0006370b05
+      movement_type: vibrate
+  condition:
+    condition: state
+    entity_id: light.buro
+    state: 'on'
+  action:
+  - service: light.turn_on
+    entity_id: light.buro_tisch
+    data:
+      effect: Twitter
+- id: Alarm_FensterOffen
+  alias: Alarm_FensterOffen
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.door_window_sensor_158d00045cf9bb
+    to: onnnn
+  condition:
+    condition: state
+    entity_id: group.all_windows
+    state: 'on'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.window_open
+  - service: light.turn_on
+    data:
+      entity_id: light.shelly_shsw_1_76ac11
+  - delay: 00:00:01
+  - service: light.turn_off
+    data:
+      entity_id: light.shelly_shsw_1_76ac11
+  - delay: 00:00:01
+  - service: light.turn_on
+    data:
+      entity_id: light.shelly_shsw_1_76ac11
+  - delay: 00:00:01
+  - service: light.turn_off
+    data:
+      entity_id: light.shelly_shsw_1_76ac11
+  - delay: 00:00:01
+  - service: light.turn_on
+    data:
+      entity_id: light.shelly_shsw_1_76ac11
+  - delay: 00:00:01
+  - service: light.turn_off
+    data:
+      entity_id: light.shelly_shsw_1_76ac11
+- id: Blink_SnapTerrasse
+  alias: Blink_SnapTerrasse
+  trigger:
+  - platform: time_pattern
+    hours: /1
+  action:
+  - service: blink.trigger_camera
+    data:
+      entity_id: camera.blink_terrasse
+  - delay: 00:00:05
+  - service: blink.blink_update
+  - service: camera.snapshot
+    data:
+      entity_id: camera.blink_terrasse
+      filename: /tmp/blink-terrasse.jpg
+  mode: single
+- id: Blink_SnapStrasse
+  alias: Blink_SnapStrasse
+  trigger:
+  - platform: time_pattern
+    hours: /1
+  action:
+  - service: blink.trigger_camera
+    data:
+      entity_id: camera.blink_strasse
+  - delay: 00:00:05
+  - service: blink.blink_update
+  - service: camera.snapshot
+    data:
+      entity_id: camera.blink_strasse
+      filename: /tmp/blink-strasse.jpg
+  mode: single
+- id: Kuche_Motion_Light
+  alias: Kuche_Motion_Light
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.motion_kuche_front
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.motion_kuche_back
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: light.kuche
+      state: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 3
+        milliseconds: 0
+    - condition: time
+      after: 05:00:00
+      before: '23:00:00'
+  action:
+  - service: light.turn_on
+    entity_id: light.kuche
+  mode: single
+- id: Kuche_NOMotion_LightOFF
+  alias: Kuche_NOMotion_LightOFF
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.motion_kuche_front
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 1
+  - platform: state
+    entity_id: binary_sensor.motion_kuche_back
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 1
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.motion_kuche_front
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.motion_kuche_back
+      state: 'off'
+  action:
+  - service: light.turn_off
+    entity_id: light.kuche
+  - service: automation.turn_off
+    data:
+      entity_id: automation.Motion_off
+- id: LA_Button_Decke
+  alias: LA_Button_Decke
+  trigger:
+  - device_id: be7a283275b9826ca6604b974c17d86f
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: remote_button_short_press
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.shelly_shsw_1_76f514
+  mode: single
+- id: LA_ButtonLong_LA
+  alias: LA_ButtonLong_LA
+  trigger:
+  - device_id: be7a283275b9826ca6604b974c17d86f
+    domain: zha
+    platform: device
+    type: remote_button_long_press
+    subtype: button
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.la
+  mode: single
+- id: LA_Button2x_LAOFFDeckeON
+  alias: LA_Button2x_LAOFFDeckeON
+  trigger:
+  - device_id: be7a283275b9826ca6604b974c17d86f
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: remote_button_double_press
+  action:
+  - service: light.turn_off
+    target:
+      entity_id: light.la
+  - service: light.turn_on
+    target:
+      entity_id: light.shelly_shsw_1_76f514
+  mode: single
+- id: Mode_RandomTimeGenerator_FsON
+  alias: Mode_RandomTimeGenerator_FsON
+  initial_state: 'on'
+  trigger:
+  - platform: time
+    at: 01:00:00
+  action:
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.fs_on_time
+      time: '{{ (range(20, 21)|random|int) }}:{{ (range(0, 59)|random|int) }}:00'
+- id: Mode_RandomTimeGenerator_FS_OFF
+  alias: Mode_RandomTimeGenerator_FS_OFF
+  initial_state: 'on'
+  trigger:
+  - platform: time
+    at: 01:00:00
+  action:
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.fs_off_time
+      time: 22:{{ (range(0, 59)|random|int) }}:00
+- id: Mode_RandomTimeGenerator_WZ_OFF
+  alias: Mode_RandomTimeGenerator_WZ_OFF
+  initial_state: 'on'
+  trigger:
+  - platform: time
+    at: 01:00:00
+  action:
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.wz_off_time
+      time: '{{ (range(21, 22)|random|int) }}:{{ (range(0, 59)|random|int) }}:00'
+- id: Modus_Away_isON_FsON
+  alias: Modus_Away_isON_FsON
+  initial_state: 'on'
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.input_datetime.fs_on_time.state[0:5]
+      }}'
+  condition:
+    condition: state
+    entity_id: input_boolean.mode_away
+    state: 'on'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.fs_decke
+- id: Modus_Away_isON_FsOFF
+  alias: Modus_Away_isON_FsOFF
+  initial_state: 'on'
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.input_datetime.fs_off_time.state[0:5]
+      }}'
+  condition:
+    condition: state
+    entity_id: input_boolean.mode_away
+    state: 'on'
+  action:
+  - service: light.turn_off
+    data:
+      entity_id: light.fs
+- id: Modus_Away_isON_WzON
+  alias: Modus_Away_isON_WzON
+  initial_state: 'on'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: 00:10:00
+  condition:
+    condition: state
+    entity_id: input_boolean.mode_away
+    state: 'on'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.wohnzimmer
+- id: Modus_Away_isON_WzOFF
+  alias: Modus_Away_isON_WzOFF
+  initial_state: 'on'
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.input_datetime.wz_off_time.state[0:5]
+      }}'
+  condition:
+    condition: state
+    entity_id: input_boolean.mode_away
+    state: 'on'
+  action:
+  - service: light.turn_off
+    data:
+      entity_id: light.wohnzimmer
+- id: Modus_Away_isON_WZMorning
+  alias: Modus_Away_isON_WZMorning
+  initial_state: 'on'
+  trigger:
+  - platform: time
+    at: 05:47:19
+  condition:
+    condition: state
+    entity_id: input_boolean.mode_away
+    state: 'on'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.wohnzimmer
+  - delay: 00:{{ (range(25, 40)|random|int) }}:00
+  - service: light.turn_off
+    data:
+      entity_id: light.wohnzimmer
+- id: Terrasse_22.00_OFF
+  alias: Terrasse_22.00_OFF
+  trigger:
+    platform: time
+    at: '22:00:00'
+  action:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.plug_158d00015dc7c9
+- id: Terrasse_Button_Terrasse
+  alias: Terrasse_Button_Terrasse
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.switch_158d00040e67a5
+      click_type: single
+  action:
+  - service: switch.toggle
+    data:
+      entity_id: switch.plug_158d00015dc7c9
+- id: Terrasse_Button2x_MusicNext
+  alias: Terrasse_Button2x_MusicNext
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.switch_158d00040e67a5
+      click_type: double
+  action:
+  - service: media_player.media_next_track
+    data:
+      entity_id: media_player.spotify_sa
+- id: Vacuum_Weekdays_CleaningTimer
+  alias: Vacuum_Weekdays_CleaningTimer
+  trigger:
+  - platform: template
+    value_template: '{{ states.sensor.vacuum_start_time_weekdays.state == states.sensor.time.state
+      }}'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.vacuum_auto
+      state: 'on'
+    - condition: time
+      weekday:
+      - mon
+      - wed
+      - fri
+  action:
+  - service: script.turn_on
+    entity_id: script.vacuum_clean_wohnung
+- id: WZ_ColorReset
+  alias: WZ_ColorReset
+  trigger:
+    platform: state
+    entity_id: light.wohnzimmer
+    from: 'on'
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  condition:
+  - condition: state
+    entity_id: input_boolean.default_light_color
+    state: 'off'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.wohnzimmer
+      brightness: 255
+      color_temp: 300
+  - service: light.turn_off
+    data:
+      entity_id: light.wohnzimmer
+      transition: 0
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.default_light_color
+- id: WZ_Color_vButton
+  alias: WZ_Color_vButton
+  trigger:
+    platform: state
+    entity_id: light.wohnzimmer
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.default_light_color
+- id: WZ_upperSwitchL_CouchFront
+  alias: WZ_upperSwitchL_CouchFront
+  trigger:
+    platform: event
+    event_type: zha_event
+    event_data:
+      unique_id: 00:15:8d:00:02:56:96:54:1:0x0006
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.couch_front
+  mode: single
+- id: WZ_upperSwitchR_CouchBack
+  alias: WZ_upperSwitchR_CouchBack
+  trigger:
+    platform: event
+    event_type: zha_event
+    event_data:
+      unique_id: 00:15:8d:00:02:56:96:54:2:0x0006
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.couch_back
+  mode: single
+- id: WZ_upperSwitchBoth_ZRH
+  alias: WZ_upperSwitchBoth_ZRH
+  trigger:
+    platform: event
+    event_type: zha_event
+    event_data:
+      unique_id: 00:15:8d:00:02:56:96:54:3:0x0006
+  action:
+  - service: switch.toggle
+    data: {}
+    target:
+      entity_id: switch.flughafen
+  mode: single
+  max: 10
+- id: WZ_Terrasse
+  alias: WZ_Terrasse
+  trigger:
+  - device_id: 7113fc18e7be93e3ea10a7072dbdd383
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: remote_button_short_press
+  action:
+  - service: switch.toggle
+    data: {}
+    target:
+      entity_id: switch.terrasse
+  mode: single
+- id: WZ_Terrasse2x_WZ
+  alias: WZ_Terrasse2x_WZ
+  trigger:
+  - device_id: 7113fc18e7be93e3ea10a7072dbdd383
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: remote_button_double_press
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.wohnzimmer
+  mode: single
+- id: WZ_belowSwitch_WZ
+  alias: WZ_belowSwitch_WZ
+  trigger:
+  - device_id: f5163cdd3092591751461bd0f2e7342c
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: remote_button_short_press
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.wohnzimmer
+  mode: single
+- id: WZ_belowSwitch2x_RefillTime
+  alias: WZ_belowSwitch2x_RefillTime
+  trigger:
+  - device_id: f5163cdd3092591751461bd0f2e7342c
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: remote_button_double_press
+  action:
+  - service: script.refill_time
+  mode: single
+- id: WZ_belowSwitchLong_SlammerTime
+  alias: WZ_belowSwitchLong_SlammerTime
+  trigger:
+  - device_id: f5163cdd3092591751461bd0f2e7342c
+    domain: zha
+    platform: device
+    type: remote_button_long_release
+    subtype: button
+  action:
+  - service: script.slammer_time
+  mode: single
+- id: '1631864389632'
+  alias: Bad_NOMotion_LightOFF
+  description: ''
+  trigger:
+  - type: no_motion
+    platform: device
+    device_id: 3be93ceaf4d970aac05a1cf12f7cd096
+    entity_id: binary_sensor.bewegung_bad_back
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 4
+      seconds: 0
+      milliseconds: 0
+  - type: no_motion
+    platform: device
+    device_id: 9c893a52829d37d16c7ec5930bcd3c39
+    entity_id: binary_sensor.bewegung_bad_front
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 4
+      seconds: 0
+      milliseconds: 0
+  condition:
+  - type: is_no_motion
+    condition: device
+    device_id: 3be93ceaf4d970aac05a1cf12f7cd096
+    entity_id: binary_sensor.bewegung_bad_back
+    domain: binary_sensor
+  - type: is_no_motion
+    condition: device
+    device_id: 9c893a52829d37d16c7ec5930bcd3c39
+    entity_id: binary_sensor.bewegung_bad_front
+    domain: binary_sensor
+  action:
+  - service: light.turn_off
+    target:
+      entity_id: light.shelly_shsw_1_770e1f
+  mode: single
+- id: '1634838047605'
+  alias: WC_Motion_Light
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: fead4bd493ae885cddc72b5d82789cd3
+    entity_id: binary_sensor.bewegung_wc
+    domain: binary_sensor
+  condition:
+  - condition: and
+    conditions:
+    - condition: device
+      type: is_off
+      device_id: a50a7ad0d0171d4a84c9c7d137c7ba02
+      entity_id: light.shelly_shsw_1_76ac11
+      domain: light
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 2
+        milliseconds: 0
+    - condition: time
+      after: 05:00:00
+      before: '22:00:00'
+  action:
+  - type: turn_on
+    device_id: a50a7ad0d0171d4a84c9c7d137c7ba02
+    entity_id: light.shelly_shsw_1_76ac11
+    domain: light
+  mode: single
+- id: '1634838452343'
+  alias: WC_noMotion_LightOFF
+  description: ''
+  trigger:
+  - type: no_motion
+    platform: device
+    device_id: fead4bd493ae885cddc72b5d82789cd3
+    entity_id: binary_sensor.bewegung_wc
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  condition: []
+  action:
+  - type: turn_off
+    device_id: a50a7ad0d0171d4a84c9c7d137c7ba02
+    entity_id: light.shelly_shsw_1_76ac11
+    domain: light
+  mode: single
+- id: '1635318554107'
+  alias: Alarm_LowBattery
+  description: ''
+  use_blueprint:
+    path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
+    input:
+      threshold: 10
+      time: '19:00:00'
+      actions:
+      - service: notify.mobile_app_slz_phone
+        data:
+          title: Battery low
+          message: '{{sensors}}'
+- id: '1635440388139'
+  alias: Alarm_Türklingel
+  description: ''
+  trigger:
+  - type: vibration
+    platform: device
+    device_id: d1e2d1eb981d2e1df082dc1a8f7705ef
+    entity_id: binary_sensor.lumi_lumi_vibration_aq1_ias_zone
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.mobile_app_slz_phone
+    data:
+      title: Türklingel
+      message: Klopf klopf...
+  mode: single
+- id: '1638476491955'
+  alias: Gang_Motion_Light
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: c477243b0ed8f32720e86645d92aa1a9
+    entity_id: binary_sensor.bewegung_gang_ias_zone
+    domain: binary_sensor
+  condition:
+  - condition: and
+    conditions:
+    - condition: time
+      after: 05:00:00
+      before: '22:00:00'
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+    - condition: device
+      type: is_off
+      device_id: 78904c1ad3bbe5aab61cd9ef7ab6e03c
+      entity_id: light.gang
+      domain: light
+  action:
+  - type: turn_on
+    device_id: 78904c1ad3bbe5aab61cd9ef7ab6e03c
+    entity_id: light.gang
+    domain: light
+  mode: single
+- id: '1638476566566'
+  alias: Gang_NoMotion_Off
+  description: ''
+  trigger:
+  - type: no_motion
+    platform: device
+    device_id: c477243b0ed8f32720e86645d92aa1a9
+    entity_id: binary_sensor.bewegung_gang_ias_zone
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 78904c1ad3bbe5aab61cd9ef7ab6e03c
+    entity_id: light.gang
+    domain: light
+  mode: single
+- id: '1638519939890'
+  alias: Gang_Door_light
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 35530217b69c0ea3b22a7edb0dd423c8
+    entity_id: binary_sensor.tur_eingang
+    domain: binary_sensor
+  condition:
+  - condition: and
+    conditions:
+    - condition: time
+      after: 05:00:00
+      before: '22:00:00'
+    - condition: device
+      type: is_off
+      device_id: 78904c1ad3bbe5aab61cd9ef7ab6e03c
+      entity_id: light.gang
+      domain: light
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 10
+        milliseconds: 0
+  action:
+  - type: turn_on
+    device_id: 78904c1ad3bbe5aab61cd9ef7ab6e03c
+    entity_id: light.gang
+    domain: light
+  mode: single

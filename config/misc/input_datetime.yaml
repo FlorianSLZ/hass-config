@@ -1,0 +1,10 @@
+# Modes
+fs_on_time:
+  has_date: false
+  has_time: true
+fs_off_time:
+  has_date: false
+  has_time: true
+wz_off_time:
+  has_date: false
+  has_time: true
