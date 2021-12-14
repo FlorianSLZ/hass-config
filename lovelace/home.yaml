@@ -1,0 +1,504 @@
+# MAIN --------------------------------------------------------------------------------------------
+
+
+title: 'HOME'
+path: home
+icon: 'mdi:home'
+panel: true
+#background: center / cover no-repeat url("/local/img/background.png") fixed
+cards:
+################################################################################################
+  - type: vertical-stack
+    cards:
+
+################################################################################################
+ # Floorplan
+      - type: horizontal-stack
+        cards:
+    
+        - type: picture-elements
+          style: |
+            ha-card {
+              --ha-card-background: rgba(0, 0, 0, 0.0);
+              box-shadow: 0px 0px;
+              margin: 0px 10%
+            }
+            ha-card:not(.type-markdown):not(.type-custom-button-card):not(.type-entities):not(.type-custom-mod-card):not(.type-custom-bar-card):not(.type-history-graph):not(.type-iframe):not(.type-glance){
+              margin: 25px 10%
+            }
+          image: /local/img/floorplan/main/SA-Home-V3.png
+          elements:
+
+# Dunkle-Räume __________________________________________________________________________________
+            - type: image
+              action: none
+              tap_action:
+                action: none
+              hold_action:
+                action: none
+              entity: light.fs
+              image: /local/img/floorplan/main/FS.png
+              state_filter:
+                "on": opacity(0%)
+                "off": opacity(100%)
+              style:
+                top: 50%
+                left: 50%
+                width: 100%
+            - type: image
+              action: none
+              tap_action:
+                action: none
+              hold_action:
+                action: none
+              entity: light.la
+              image: /local/img/floorplan/main/LA.png
+              state_filter:
+                "on": opacity(0%)
+                "off": opacity(100%)
+              style:
+                top: 50%
+                left: 50%
+                width: 100%
+            - type: image
+              action: none
+              tap_action:
+                action: none
+              hold_action:
+                action: none
+              entity: light.shelly_shsw_1_76ac11
+              image: /local/img/floorplan/main/WC.png
+              state_filter:
+                "on": opacity(0%)
+                "off": opacity(100%)
+              style:
+                top: 50%
+                left: 50%
+                width: 100%
+            - type: image
+              action: none
+              tap_action:
+                action: none
+              hold_action:
+                action: none
+              entity: light.shelly_shsw_1_770e1f
+              image: /local/img/floorplan/main/Bad.png
+              state_filter:
+                "on": opacity(0%)
+                "off": opacity(100%)
+              style:
+                top: 50%
+                left: 50%
+                width: 100%
+            - type: image
+              action: none
+              tap_action:
+                action: none
+              hold_action:
+                action: none
+              entity: light.kuche
+              image: /local/img/floorplan/main/Küche.png
+              state_filter:
+                "on": opacity(0%)
+                "off": opacity(100%)
+              style:
+                top: 50%
+                left: 50%
+                width: 100%
+            - type: image
+              action: none
+              tap_action:
+                action: none
+              hold_action:
+                action: none
+              entity: light.esszimmer
+              image: /local/img/floorplan/main/Esszimmer.png
+              state_filter:
+                "on": opacity(0%)
+                "off": opacity(100%)
+              style:
+                top: 50%
+                left: 50%
+                width: 100%
+            - type: image
+              action: none
+              tap_action:
+                action: none
+              hold_action:
+                action: none
+              entity: light.wohnzimmer
+              image: /local/img/floorplan/main/Wohnzimmer.png
+              state_filter:
+                "on": opacity(0%)
+                "off": opacity(100%)
+              style:
+                top: 50%
+                left: 50%
+                width: 100%
+            - type: image
+              action: none
+              tap_action:
+                action: none
+              hold_action:
+                action: none
+              entity: switch.terrasse
+              image: /local/img/floorplan/main/Terrasse.png
+              state_filter:
+                "on": opacity(0%)
+                "off": opacity(100%)
+              style:
+                top: 50%
+                left: 50%
+                width: 100%
+            - type: image
+              action: none
+              tap_action:
+                action: none
+              hold_action:
+                action: none
+              entity: light.gang
+              image: /local/img/floorplan/main/Gang.png
+              state_filter:
+                "on": opacity(0%)
+                "off": opacity(100%)
+              style:
+                top: 50%
+                left: 50%
+                width: 100%
+# Badges ________________________________________________________________________________________
+    # Temp Wohnzimmer
+            - type: conditional
+              conditions:
+                - entity: input_boolean.show_temp
+                  state: 'on'
+              elements:
+                - type: state-badge
+                  entity: sensor.temperatur_wz
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 70%
+                    left: 65%
+                - type: state-badge
+                  entity: sensor.luftfeuchtigkeit_wz
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 70%
+                    left: 72%
+
+    # Temp Gang
+            - type: conditional
+              conditions:
+                - entity: input_boolean.show_temp
+                  state: 'on'
+              elements:
+                - type: state-badge
+                  entity: sensor.temperatur_gang
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 39%
+                    left: 45%
+                - type: state-badge
+                  entity: sensor.luftfeuchtigkeit_gang
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 39%
+                    left: 52%
+
+    # Temp Bad
+            - type: conditional
+              conditions:
+                - entity: input_boolean.show_temp
+                  state: 'on'
+              elements:
+                - type: state-badge
+                  entity: sensor.temperatur_bad
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 26%
+                    left: 28%
+                - type: state-badge
+                  entity: sensor.luftfeuchtigkeit_bad
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 26%
+                    left: 35%
+
+    # Temp WC
+            - type: conditional
+              conditions:
+                - entity: input_boolean.show_temp
+                  state: 'on'
+              elements:
+                - type: state-badge
+                  entity: sensor.temperatur_wc
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 16%
+                    left: 12%
+                - type: state-badge
+                  entity: sensor.luftfeuchtigkeit_wc
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 16%
+                    left: 19%
+
+    # Temp Küche 
+            - type: conditional
+              conditions:
+                - entity: input_boolean.show_temp
+                  state: 'on'
+              elements:
+                - type: state-badge
+                  entity: sensor.temperatur_kuche
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 21%
+                    left: 45%
+                - type: state-badge
+                  entity: sensor.luftfeuchtigkeit_kuche
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 21%
+                    left: 52%
+
+    # Aussentemperatur Terrasse
+            - type: conditional
+              conditions:
+                - entity: input_boolean.show_temp
+                  state: 'on'
+              elements:
+                - type: state-badge
+                  entity: sensor.temperatur_terrasse
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 92%
+                    left: 70%
+                - type: state-badge
+                  entity: sensor.luftfeuchtigkeit_terrasse
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 92%
+                    left: 77%
+                    
+    # Temp LA
+            - type: conditional
+              conditions:
+                - entity: input_boolean.show_temp
+                  state: 'on'
+              elements:
+                - type: state-badge
+                  entity: sensor.temperatur_la
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 77%
+                    left: 38%
+                - type: state-badge
+                  entity: sensor.luftfeuchtigkeit_la
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 77%
+                    left: 45%
+                    
+    # Temp FS
+            - type: conditional
+              conditions:
+                - entity: input_boolean.show_temp
+                  state: 'on'
+              elements:
+                - type: state-badge
+                  entity: sensor.temperatur_fs
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 77%
+                    left: 12%
+                - type: state-badge
+                  entity: sensor.luftfeuchtigkeit_fs
+                  title: null
+                  style:
+                    font-size: 10px
+                    color: transparent
+                    top: 77%
+                    left: 19%
+
+# Light Toggles _________________________________________________________________________________
+            
+            - type: image
+              entity: light.gang
+              tap_action:
+                action: toggle
+              state_image:
+                "on": /local/img/transparent.png
+                "off": /local/img/transparent.png
+                "unavailable": /local/img/unavailable.png
+              style:
+                top: 40%
+                left: 35%
+                width: 45%
+            
+            - type: image
+              entity: light.fs
+              tap_action:
+                action: toggle
+              state_image:
+                "on": /local/img/transparent.png
+                "off": /local/img/transparent.png
+                "unavailable": /local/img/unavailable.png
+              style:
+                top: 60%
+                left: 14%
+                width: 20%
+            - type: image
+              entity: light.la
+              tap_action:
+                action: toggle
+              state_image:
+                "on": /local/img/transparent.png
+                "off": /local/img/transparent.png
+                "unavailable": /local/img/unavailable.png
+              style:
+                top: 60%
+                left: 41%
+                width: 22%
+            - type: image
+              entity: light.shelly_shsw_1_76ac11 # WC
+              tap_action:
+                action: toggle
+              state_image:
+                "on": /local/img/transparent.png
+                "off": /local/img/transparent.png
+                "unavailable": /local/img/unavailable.png
+              style:
+                top: 12%
+                left: 16%
+                width: 10%
+                
+            - type: image
+              entity: light.shelly_shsw_1_770e1f # Bad
+              tap_action:
+                action: toggle
+              state_image:
+                "on": /local/img/transparent.png
+                "off": /local/img/transparent.png
+                "unavailable": /local/img/unavailable.png
+              style:
+                top: 14%
+                left: 31%
+                width: 12%
+                
+            - type: image
+              entity: light.kuche
+              tap_action:
+                action: toggle
+              state_image:
+                "on": /local/img/transparent.png
+                "off": /local/img/transparent.png
+                "unavailable": /local/img/unavailable.png
+              style:
+                top: 12%
+                left: 49%
+                width: 17%
+                
+            - type: image
+              entity: light.esszimmer
+              tap_action:
+                action: toggle
+              state_image:
+                "on": /local/img/transparent.png
+                "off": /local/img/transparent.png
+                "unavailable": /local/img/unavailable.png
+              style:
+                top: 20%
+                left: 73%
+                width: 20%
+                
+            - type: image
+              entity: light.wohnzimmer
+              tap_action:
+                action: toggle
+              state_image:
+                "on": /local/img/transparent.png
+                "off": /local/img/transparent.png
+                "unavailable": /local/img/unavailable.png
+              style:
+                top: 55%
+                left: 73%
+                width: 25%
+                
+            - type: image
+              entity: switch.terrasse
+              tap_action:
+                action: toggle
+              state_image:
+                "on": /local/img/transparent.png
+                "off": /local/img/transparent.png
+                "unavailable": /local/img/unavailable.png
+              style:
+                top: 85%
+                left: 73%
+                width: 15%
+
+            
+                    
+
+                
+################################################################################################
+ # Buttons
+ 
+      - type: horizontal-stack
+        cards:
+        - type: "custom:button-card"
+          entity: script.goaway
+          icon: mdi:power
+          size: 25%
+          show_name: false
+          tap_action:
+            action: call-service
+            service: script.goaway
+        - type: "custom:button-card"
+          entity: input_boolean.mode_away
+          icon: mdi:airplane
+          show_name: false
+          size: 25%
+          hold_action:
+            action: navigate
+            navigation_path: /lovelace/1
+          double_tap_action:
+            action: navigate
+            navigation_path: /lovelace/1
+        - type: "custom:button-card"
+          size: 25%
+          icon: mdi:view-dashboard-variant-outline
+          show_name: false
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace/control
+        - type: "custom:button-card"
+          entity: light.wohnzimmer
+          icon: mdi:sofa
+          size: 25%
+          show_name: false
+          hold_action:
+            action: more-info
+          double_tap_action: 
+            action: call-service
+            service: script.watchtv
+        - type: "custom:button-card"
+          entity: input_boolean.show_temp
+          icon: mdi:thermometer
+          size: 25%
+          show_name: false

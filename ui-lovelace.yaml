@@ -1,0 +1,133 @@
+custom_header:
+  compact_mode: true
+  
+title: Home
+theme: 'SA Mobile'
+
+button_card_templates: !include button_card_templates.yaml
+
+
+sidebar:
+  width:
+    desktop: 25
+    tablet: 25
+    mobile: 0
+  date: true
+  digitalClock: true
+  twelveHourVersion: false
+  bottomCard:
+    type: horizontal-stack
+    cardOptions:
+      cards:
+      - type: horizontal-stack
+        cards:
+        - type: "custom:button-card"
+          icon: mdi:robot-vacuum
+          tap_action:
+            action: call-service
+            service: script.turn_on
+            service_data:
+              entity_id: script.vacuum_clean_wohnung
+        - type: "custom:button-card"
+          entity: input_boolean.mode_away
+          icon: mdi:airplane
+          show_name: false
+        - type: "custom:button-card"
+          entity: script.goaway
+          icon: mdi:power
+          show_name: false
+          tap_action:
+            action: call-service
+            service: script.goaway
+          style: |
+            ha-card{
+              margin-bottom: 30px
+            }
+      
+  sidebarMenu:
+    - action: navigate
+      active: true
+      icon: 'mdi:home'
+      name: Home
+      navigation_path: /lovelace/home
+    - action: navigate
+      active: true
+      icon: 'mdi:alpha-f-circle'
+      name: FS
+      navigation_path: /lovelace/FS
+    - action: navigate
+      active: true
+      icon: 'mdi:alpha-l-circle'
+      name: LA
+      navigation_path: /lovelace/LA
+    - action: navigate
+      active: true
+      icon: 'mdi:desktop-mac'
+      name: Büro
+      navigation_path: /lovelace/office
+    - action: navigate
+      active: true
+      icon: 'mdi:camera-iris'
+      name: Kameras
+      navigation_path: /lovelace/cams
+    - action: navigate
+      active: true
+      icon: 'mdi:view-dashboard-variant'
+      name: Dashboard
+      navigation_path: /lovelace/control
+
+  style: |
+    :host {
+        --sidebar-background: var(--third-background-color);
+        --sidebar-text-color: var(--primary-text-color);
+        --face-color: #21353E;
+        --face-border-color: #21353E;
+        --clock-hands-color: #fff;
+        --clock-seconds-hand-color: #fff;
+        --clock-middle-background: #21353E;
+        --clock-middle-border: #21353E;
+    }
+    .sidebarMenu li.active {
+     background-color: var(--primary-background-color)!important;
+     color: var(--paper-item-icon-active-color)!important;
+     font-weight: 600!important;
+     }
+     
+    .sidebarMenu {
+     border-top: 1px solid var(--primary-text-color)!important;
+     border-bottom: 1px solid var(--primary-text-color)!important;
+     }
+     
+    h2 {
+     font-size: 15px!important;
+     line-height: 10px!important;
+     font-weight: 200;
+     color: #636B75;
+     margin-top: 0px!important;
+     margin-bottom: 15px!important;
+     text-align: center!important;
+     padding: 0px!important;
+     }
+     
+    .sidebarMenu li.active ha-icon {
+     color: var(--paper-item-icon-active-color)!important;
+     }
+     
+    .digitalClock {
+     text-align: center!important;
+     padding: 0;
+     font-size: 48px!important;
+     line-height: 100px;
+     font-weight: lighter;
+     color: var(--paper-item-icon-active-color)!important;
+     margin-bottom: 0!important;
+    }
+     
+     
+views:
+  - !include lovelace/home.yaml
+  - !include lovelace/fs.yaml
+  - !include lovelace/la.yaml
+  - !include lovelace/buro.yaml
+  - !include lovelace/cams.yaml
+  - !include lovelace/control.yaml
