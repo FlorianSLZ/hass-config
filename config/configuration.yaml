@@ -109,21 +109,3 @@ weather:
   - platform: darksky
     api_key: !secret darksky_key
     mode: daily
-    latitude: 47.492287
-    longitude: 9.250111
-  
-#---------------------------------------------------------------------------------
-# Locations
-#---------------------------------------------------------------------------------
-zone:
-  # This will override the default home zone
-  - name: Home
-    latitude: 47.468255 
-    longitude: 9.053567
-    radius: 100
-    icon: mdi:home-circle
-  - name: Charger-Spital
-    latitude: 47.465524
-    longitude: 9.056913
-    radius: 100
-    icon: mdi:ev-station
